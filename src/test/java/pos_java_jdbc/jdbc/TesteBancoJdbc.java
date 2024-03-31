@@ -4,24 +4,23 @@ import java.util.List;
 
 import org.junit.Test;
 
-
 import dao.UserPostDao;
 import model.Userpostjava;
 
 public class TesteBancoJdbc {
-	
+
 	@Test
 	public void initBanco() {
 		UserPostDao userPostDao = new UserPostDao();
 		Userpostjava userpostjava = new Userpostjava();
-		
+
 		userpostjava.setId(4L);
 		userpostjava.setNome("Junit Teste");
 		userpostjava.setEmail("teste@junit.com");
-		
-		userPostDao.salvar(userpostjava);		
+
+		userPostDao.salvar(userpostjava);
 	}
-	
+
 	@Test
 	public void initListar() {
 		UserPostDao dao = new UserPostDao();
@@ -34,7 +33,7 @@ public class TesteBancoJdbc {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Test
 	public void buscar() {
 		UserPostDao dao = new UserPostDao();
@@ -44,6 +43,17 @@ public class TesteBancoJdbc {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+	}
+
+	@Test
+	public void initAtualizar() {
+		try {
+			UserPostDao dao = new UserPostDao();
+			Userpostjava objBanco = dao.buscar(4L);
+			objBanco.setNome("Nome initAtualizar");
+			dao.atualizar(objBanco);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 }
