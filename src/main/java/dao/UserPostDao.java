@@ -30,7 +30,7 @@ public class UserPostDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 //	create SEQUENCE usersequence
 //	increment 1
 //	minvalue 1
@@ -41,7 +41,6 @@ public class UserPostDao {
 //
 //	alter table userpostjava ALTER column id set default nextval('usersequence'::regclass);
 //
-
 
 	public List<Userpostjava> listar() throws Exception {
 
@@ -94,6 +93,24 @@ public class UserPostDao {
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
+	}
+
+	public void deletar(Long id) {
+		try {
+			String sql = "delete from userpostjava where id = " + id;
+			PreparedStatement statement = connection.prepareStatement(sql);
+			statement.execute();
+			connection.commit();
+
+		} catch (Exception e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
