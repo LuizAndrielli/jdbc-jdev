@@ -14,7 +14,7 @@ public class TesteBancoJdbc {
 		UserPostDao userPostDao = new UserPostDao();
 		Userpostjava userpostjava = new Userpostjava();
 
-		userpostjava.setId(4L);
+//		userpostjava.setId(4L);
 		userpostjava.setNome("Junit Teste");
 		userpostjava.setEmail("teste@junit.com");
 

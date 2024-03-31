@@ -20,17 +20,28 @@ public class UserPostDao {
 
 	public void salvar(Userpostjava userpostjava) {
 		try {
-			String sql = "insert into userpostjava(id,nome,email) values (?,?,?)";
+			String sql = "insert into userpostjava(nome,email) values (?,?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
-			insert.setLong(1, userpostjava.getId());
-			insert.setString(2, userpostjava.getNome());
-			insert.setString(3, userpostjava.getEmail());
+			insert.setString(1, userpostjava.getNome());
+			insert.setString(2, userpostjava.getEmail());
 			insert.execute();
 			connection.commit();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
+	
+//	create SEQUENCE usersequence
+//	increment 1
+//	minvalue 1
+//	maxvalue 981723987129
+//	start 5;
+//
+//	SELECT * from userpostjava 
+//
+//	alter table userpostjava ALTER column id set default nextval('usersequence'::regclass);
+//
+
 
 	public List<Userpostjava> listar() throws Exception {
 
