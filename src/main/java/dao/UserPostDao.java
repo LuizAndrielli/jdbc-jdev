@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexaojdbc.SingleConnection;
+import model.Telefone;
 import model.Userpostjava;
 
 public class UserPostDao {
@@ -110,10 +111,28 @@ public class UserPostDao {
 			try {
 				connection.rollback();
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			e.printStackTrace();
+		}
+	}
+
+	public void salvarTelefone(Telefone telefone) {
+		try {
+			String sql = "INSERT INTO public.telefoneuser(numero, tipo, usuariopessoa) VALUES (?, ?, ?);";
+			PreparedStatement preparedStatement = connection.prepareStatement(sql);
+			preparedStatement.setString(1, telefone.getNumero());
+			preparedStatement.setString(2, telefone.getTipo());
+			preparedStatement.setLong(3, telefone.getUsuariopessoa());
+			preparedStatement.execute();
+			connection.commit();
+		} catch (Exception e) {
+			e.printStackTrace();
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 		}
 	}
 
