@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import conexaojdbc.SingleConnection;
+import model.TelUserBean;
 import model.Telefone;
 import model.Userpostjava;
 
@@ -134,6 +135,32 @@ public class UserPostDao {
 				e1.printStackTrace();
 			}
 		}
+	}
+	
+	public List<TelUserBean> listarTelefoneuser(Long id) {
+		List<TelUserBean> list = new ArrayList<TelUserBean>();
+		
+		String sql = " select nome,numero,email from telefoneuser as fone ";
+		sql += " inner join userpostjava as userp ";
+		sql += " on fone.usuariopessoa = userp.id ";
+		sql += " where userp.id = " + id;
+		
+		try {
+		PreparedStatement statement = connection.prepareStatement(sql);		
+		ResultSet resultSet = statement.executeQuery();
+		
+		while(resultSet.next()) {
+			TelUserBean bean = new TelUserBean();
+			bean.setEmail(resultSet.getString("email"));
+			bean.setNome(resultSet.getString("nome"));
+			bean.setNumero(resultSet.getString("numero"));
+			list.add(bean);
+		}
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		
 	}
 
 }

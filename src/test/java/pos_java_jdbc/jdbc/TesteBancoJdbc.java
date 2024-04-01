@@ -1,10 +1,12 @@
 package pos_java_jdbc.jdbc;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.Test;
 
 import dao.UserPostDao;
+import model.TelUserBean;
 import model.Telefone;
 import model.Userpostjava;
 
@@ -77,5 +79,20 @@ public class TesteBancoJdbc {
 		
 		UserPostDao dao = new UserPostDao();
 		dao.salvarTelefone(telefone);
+	}
+	
+//	select nome,numero from telefoneuser as fone
+//	inner join userpostjava as userp
+//	on fone.usuariopessoa = userp.id
+	
+	@Test
+	public void buscarFoneUser() {
+		UserPostDao dao = new UserPostDao();
+		List<TelUserBean> bean = dao.listarTelefoneuser(3L);
+		for (TelUserBean telUserBean : bean) {
+			System.out.println(telUserBean);
+		}
+		
+		
 	}
 }
