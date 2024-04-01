@@ -92,7 +92,11 @@ public class TesteBancoJdbc {
 		for (TelUserBean telUserBean : bean) {
 			System.out.println(telUserBean);
 		}
-		
-		
+	}
+	
+	@Test
+	public void deletarFoneUser() {
+		UserPostDao dao = new UserPostDao();
+		dao.deletarUserFone(3L);
 	}
 }

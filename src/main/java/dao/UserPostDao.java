@@ -160,6 +160,30 @@ public class UserPostDao {
 			e.printStackTrace();
 		}
 		return list;
+	}
+	
+	public void deletarUserFone(Long id) {
+		String sqlFone = "delete from telefoneuser where usuariopessoa = " + id;
+		String sqlUser = "delete from userpostjava where id = " + id;
+		
+		try {
+			PreparedStatement statement = connection.prepareStatement(sqlFone);
+			statement.executeUpdate();			
+			connection.commit();
+			
+			statement = connection.prepareStatement(sqlUser);
+			statement.executeUpdate();
+			connection.commit();
+			
+		} catch (SQLException e) {
+			try {
+				connection.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			e.printStackTrace();
+		}
 		
 	}
 
